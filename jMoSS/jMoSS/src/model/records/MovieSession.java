@@ -9,6 +9,7 @@ public class MovieSession implements RecordInterface{
 	private int numberOfSeats;
 	private String theatreName;
 	
+	// Constructor for bookings, call whenever making a new booking.
 	public MovieSession(String movieName, String sessionTime, int numberOfSeats, String theatreName) {
 		setMovieName(movieName);
 		setSessionTime(sessionTime);
@@ -16,12 +17,16 @@ public class MovieSession implements RecordInterface{
 		setTheatreName(theatreName);
 	}
 	
+	
+	//Returns the Booking a formatted string for saving to files.
 	@Override
 	public String getAsFormattedString() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	//Below here are just traditional getters and setters.
+	
 	public String getMovieName() {
 		return movieName;
 	}

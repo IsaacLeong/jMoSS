@@ -3,7 +3,10 @@ package client;
 public class jMossClient {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		/*
+		 *  The main access point of the program, all implementation of the other classes will
+		 *  culminate here.
+		 */
 		
 	}
 
