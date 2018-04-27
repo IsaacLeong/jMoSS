@@ -38,7 +38,7 @@ public class LogInMenu implements MenuInterface {
 			
 			//Password or username is fault, loop repeats till combination correct.
 			if (validUser == false) {
-				System.out.print("Invalid username/password combination");
+				System.out.println("Invalid username/password combination");
 			}
 			//User is verified as real, loop ends.
 			else if (validUser == true) {

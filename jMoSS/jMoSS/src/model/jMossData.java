@@ -25,9 +25,9 @@ public class jMossData implements jMossIOInterface {
 	 * When save or load is called, these are what will be affected
 	 * and when searching for data, it will all be centralized here.
 	 */
-	private ArrayList<Booking> bookings;
-	private ArrayList<Clerk> clerks;
-	private ArrayList<MovieSession> movieSessions;
+	private ArrayList<Booking> bookings = new ArrayList<Booking>();
+	private ArrayList<Clerk> clerks = new ArrayList<Clerk>();
+	private ArrayList<MovieSession> movieSessions = new ArrayList<MovieSession>();
 	
 	//Constructor
 	private jMossData() {
