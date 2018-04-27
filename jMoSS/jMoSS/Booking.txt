@@ -1,0 +1,16 @@
+francis_john@example.com/Lilydale/1001/3/0001/
+johns_work@example.com/Kensington/2005/6/0002/
+testuser1@example.com/Lilydale/3003/1/0003/
+testuser2@example.com/Melbourne/4000/1/0004/
+placeholder@example.com/Carlton/1001/10/0005/
+workplace_email@example.com/Carlton/2004/3/0006/
+kerrie_boutique@example.com/Fitzroy/3001/1/0007/
+sunderland6092@example.com/South Yarra/5000/2/0008/
+why_even_bother@example.com/Albert Park/4001/4/0009/
+southbanksports@example.com/Sunshine/5005/8/0010/
+johns_work@example.com/Ripponlea/5003/2/0011/
+francis_john@example.com/St Kilda/4002/1/0012/
+testuser3@example.com/St Kilda/2001/3/0013/
+testuser4@example.com/Fairfield/2003/2/0014/
+testuser5@example.com/Richmond/3002/5/0015/
+testuser6@example.com/Rockbank/1002/8/0016/
