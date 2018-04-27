@@ -17,8 +17,8 @@ public class Clerk implements RecordInterface{
 	//Returns the Booking a formatted string for saving to files.
 	@Override
 	public String getAsFormattedString() {
-		// TODO Auto-generated method stub
-		return null;
+		String saveString = getUsername() + "/" + getPassword() + "/";
+		return saveString;
 	}
 	
 	//Below here are just traditional getters and setters.

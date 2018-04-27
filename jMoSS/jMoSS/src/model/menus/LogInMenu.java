@@ -1,33 +1,63 @@
 package model.menus;
 
+import java.util.Scanner;
+
 import interfaces.MenuInterface;
+import model.records.Clerk;
+import model.jMossData;
 
 public class LogInMenu implements MenuInterface {
 
 	@Override
 	public void displayMenu() {
-		/*
-		 * This will be the primary display of the menu, designed purely for output.
-		 * If sub menus exist, it may be necessary to alter or add arguements for this.
-		 * In the case of sub menus for a section, consider the use switches, and a storage variable
-		 * for user input selection
-		 */
-		
+		System.out.println("------------------------------------------------------------");
+		System.out.println("");
+		System.out.println("             JAVA BASED MOVIE SEARCH SYSTEM");
+		System.out.println("                  By ABC Cineplex Corp");
+		System.out.println("");
+		System.out.println("------------------------------------------------------------");
+		System.out.println("");
 	}
 
 	@Override
 	public void handleMenu() {
-		/*
-		 * This will be the primary handler of the menu, for dealing with user input.
-		 * Here will be how the system responds to user input, and thus correct and incorrect responses, in conjunction with the
-		 * displayMenu(); function.
-		 */
-		
+		Boolean validUser = false;
+		do {
+			//Print menu
+			displayMenu();
+			//opens scanner, and goes through user I/O
+			Scanner userInput = new Scanner(System.in);
+			
+			System.out.println("Please enter your username: ");
+			String username = userInput.nextLine();
+			System.out.println("Password: ");
+			String password = userInput.nextLine();
+			
+			//Verifies user exists
+			validUser = verifyUser(username, password);
+			
+			//Password or username is fault, loop repeats till combination correct.
+			if (validUser == false) {
+				System.out.print("Invalid username/password combination");
+			}
+			//User is verified as real, loop ends.
+			else if (validUser == true) {
+				System.out.println("Welcome " + username);
+				userInput.close();
+			}
+			
+		} while	(validUser == false);
+
 	}
 	
 	// A search function that matches whether a username and password given matches something stored in the program.
-	public boolean verifyUser(String userName, String password)
+	public boolean verifyUser(String username, String password)
 	{
+		for(Clerk clerk : jMossData.getInstance().getClerks()) {
+			if(clerk.getUsername().equals(username) == true && clerk.getPassword().equals(password) == true) {
+				return true;
+			}
+		}
 		return false;
 	}
 	
