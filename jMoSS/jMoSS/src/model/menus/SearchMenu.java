@@ -64,15 +64,13 @@ public class SearchMenu implements MenuInterface {
 		ArrayList<MovieSession> movieSessions = jMossClient.data.getMovieSessions();
 		for(int i = 0; i < movieSessions.size(); i++) {
 			if(movieSessions.get(i).getCineplex().equals(theatreName)) {
-				System.out.println(movieSessions.get(i).getCineplex());
-				matchCount = 1;
-				break;
+				System.out.println(movieSessions.get(i).getAsFormattedString());
+				matchCount++;
 			}
 		}
 		if(matchCount == 0) {
 			System.out.println("No Results Found");
 		}
-		return null;
 		return null;
 	}
 
@@ -89,7 +87,6 @@ public class SearchMenu implements MenuInterface {
 		if(matchCount == 0) {
 			System.out.println("No Results Found");
 		}
-		return null;
 		return null;
 	}
 	
