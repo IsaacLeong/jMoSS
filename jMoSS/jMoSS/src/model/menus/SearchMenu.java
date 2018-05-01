@@ -44,6 +44,9 @@ public class SearchMenu implements MenuInterface {
 				if(input.equals("1")) {
 					searchMovie();
 				}
+				else if(input.equals("2")) {
+					searchCineplex();
+				}
 				reader.close();
 			} catch (IOException e) {}
 		} while(input == "0");
@@ -57,6 +60,17 @@ public class SearchMenu implements MenuInterface {
 	 */
 	public MovieSession searchTheatre(String theatreName)
 	{
+		int matchCount = 0;
+		ArrayList<MovieSession> movieSessions = jMossClient.data.getMovieSessions();
+		for(int i = 0; i < movieSessions.size(); i++) {
+			if(movieSessions.get(i).getCineplex().equalsIgnoreCase(theatreName)) {
+				System.out.println(movieSessions.get(i).getAsFormattedString());
+				matchCount++;
+			}
+		}
+		if(matchCount == 0) {
+			System.out.println("No Results Found");
+		}
 		return null;
 	}
 
@@ -103,6 +117,7 @@ public class SearchMenu implements MenuInterface {
 	}
 	
 	public void searchCineplex() {
+		String title = null;
 		System.out.println("=============================");
 		System.out.println();
 		System.out.println("Search");
@@ -111,6 +126,18 @@ public class SearchMenu implements MenuInterface {
 		System.out.println("=============================");
 		System.out.println();
 		System.out.println("Please enter a location (0 to go back): ");
+		try {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			while((title = reader.readLine()) != null){
+				if(title.equals("0")) {
+					displayMenu();
+					break;
+				}
+				searchMovieName(title);
+				searchMovie();
+			}
+			reader.close();
+		} catch (IOException e) {}
 		System.out.println();
 	}
 
