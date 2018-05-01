@@ -123,7 +123,7 @@ public class BookingMenu implements MenuInterface {
 		System.out.println("=============================");
 		System.out.println();
 		
-		getNumberOfPpl("");
+		getNumberOfPpl("3002");
 		
 	}
 	
