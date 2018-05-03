@@ -63,7 +63,7 @@ public class SearchMenu implements MenuInterface {
 	public MovieSession searchTheatre(String theatreName)
 	{
 		int matchCount = 0;
-		ArrayList<MovieSession> movieSessions = jMossClient.data.getMovieSessions();
+		ArrayList<MovieSession> movieSessions = jMossData.getInstance().getMovieSessions();
 		for(int i = 0; i < movieSessions.size(); i++) {
 			if(movieSessions.get(i).getCineplex().equalsIgnoreCase(theatreName)) {
 				System.out.println(movieSessions.get(i).getAsFormattedString());
@@ -79,7 +79,7 @@ public class SearchMenu implements MenuInterface {
 	public MovieSession searchMovieName(String movieName)
 	{
 		int matchCount = 0;
-		ArrayList<MovieSession> movieSessions = jMossClient.data.getMovieSessions();
+		ArrayList<MovieSession> movieSessions = jMossData.getInstance().getMovieSessions();
 		for(int i = 0; i < movieSessions.size(); i++) {
 			if(movieSessions.get(i).getMovieName().equals(movieName)) {
 				System.out.println(movieSessions.get(i).getAsFormattedString());
