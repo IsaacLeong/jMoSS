@@ -5,7 +5,6 @@ import model.jMossData;
 import model.records.MovieSession;
 import java.util.*;
 
-import client.jMossClient;
 
 public class BookingMenu implements MenuInterface {
 	
