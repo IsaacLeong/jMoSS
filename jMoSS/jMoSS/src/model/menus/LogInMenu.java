@@ -7,7 +7,9 @@ import model.records.Clerk;
 import model.jMossData;
 
 public class LogInMenu implements MenuInterface {
-
+	
+	Clerk currentUser;
+	
 	@Override
 	public void displayMenu() {
 		System.out.println("------------------------------------------------------------");
@@ -43,8 +45,10 @@ public class LogInMenu implements MenuInterface {
 			//User is verified as real, loop ends.
 			else if (validUser == true) {
 				System.out.println("Welcome " + username);
+				setCurrentUser(findUser(username, password));
 				userInput.close();
 			}
+			
 			
 		} while	(validUser == false);
 
@@ -61,4 +65,20 @@ public class LogInMenu implements MenuInterface {
 		return false;
 	}
 	
+	public void setCurrentUser(Clerk currentUser) {
+		this.currentUser = currentUser;
+	}
+	
+	public Clerk getCurrentUser() {
+		return currentUser;
+	}
+	
+	public Clerk findUser(String username, String password) {
+		for(Clerk clerk : jMossData.getInstance().getClerks()) {
+			if(clerk.getUsername().equals(username) == true && clerk.getPassword().equals(password) == true) {
+				return clerk;
+			}
+		}
+		return null;
+	}
 }
