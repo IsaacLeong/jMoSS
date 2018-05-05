@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import interfaces.MenuInterface;
+import model.ErrorHandling;
 import model.jMossData;
 import model.records.Booking;
 
@@ -33,10 +34,11 @@ public class EmailSearchMenu implements MenuInterface {
 		
 		//Input Handling
 		Scanner inputBuffer = new Scanner(System.in);
-		String userInput;
+
 		
 		do {
 			
+			String userInput;
 			//Declare holding ArrayList for bookings to be Printed.
 			ArrayList<Booking> printBookings = new ArrayList<Booking>();
 			
@@ -53,10 +55,18 @@ public class EmailSearchMenu implements MenuInterface {
 				}
 			}
 				
-				
-			//Casts all valid bookings to the holding Array List
-			printBookings = searchBooking(userInput);
+			userInput = refineEmailSearch(userInput, inputBuffer);
 			
+			//checks for a failed search, or an back command by a user.
+			if(userInput == null) {
+				continue;
+			}
+			
+			
+			//Casts all valid bookings to the holding Array List
+			if(userInput != null) {
+				printBookings = searchBooking(userInput);
+			}
 			
 			if(printBookings.isEmpty() == false) {
 				//Lists all valid inputs.
@@ -131,6 +141,58 @@ public class EmailSearchMenu implements MenuInterface {
 		}
 		
 		
+	}
+	
+	public String refineEmailSearch(String partialToCompare, Scanner input) {
+		
+		//Holding array for search matches
+		ArrayList<Booking> validEmails = new ArrayList<Booking>();
+		
+		//Declarations for menus
+		int matchCount = 1;
+		boolean exitCheck = false;
+		
+		String userInput;
+		
+		//Forms menu, populates holding array
+		
+		for(Booking booking : jMossData.getInstance().getBookings()) {
+			if(booking.getCustomerEmail().contains(partialToCompare) == true) {
+				validEmails.add(booking);
+				
+			}
+		}
+		
+		if(validEmails.isEmpty() == true) {
+			System.out.println("There are no email addresses that match the search term, please try again");
+			return null;
+		}
+		else {
+			
+			System.out.println("Select an Email Address, or \"0\" to go back: ");
+			for(Booking booking : validEmails) {
+				System.out.println(matchCount + ": " + booking.getCustomerEmail());
+				matchCount++;
+			}
+			
+			//waits for user input
+			do {
+				userInput = input.nextLine();
+				
+				//returns null if user wishes to go back
+				if(userInput.equals("0")) {
+					return null;
+				}
+				//returns the actual customer email if the user selects a valid email address.
+				else if(ErrorHandling.inputValidator(userInput, validEmails.size())) {
+					return validEmails.get(Integer.parseInt(userInput)).getCustomerEmail();
+				}
+				
+				
+				
+			}while(exitCheck == false);
+		}
+		return null;
 	}
 
 	

@@ -1,7 +1,6 @@
 package model.menus;
 
 import interfaces.MenuInterface;
-import model.ErrorHandling;
 import model.jMossData;
 import model.records.MovieSession;
 import java.util.*;
@@ -68,7 +67,7 @@ public class BookingMenu implements MenuInterface {
 			// print out the session times and available seats
 			if(movieSession.getMovieName().equalsIgnoreCase(movieName) == true && movieSession.getCineplex().equalsIgnoreCase(cineplex) == true) 
 			{
-				//if number of seats is 0 (ie full) don't display
+				
 				if(movieSession.getNumberOfSeats() > 0)
 				{
 					System.out.println((matchCount + 1) + ". " + movieSession.getSessionTime() + " " + "(" + movieSession.getNumberOfSeats() + ")");
@@ -81,40 +80,29 @@ public class BookingMenu implements MenuInterface {
 			
 		}
 		
-		// if there are sessions, print out bottom of menu
 		if(matchCount > 0) {
 			
-			while(true)
+			System.out.println();
+			System.out.println("0. Back");
+			System.out.println();
+			
+			System.out.println("=============================");
+			System.out.println("Choose an option (0 - " + matchCount + "): ");
+			
+			selection = userInput.nextLine();
+			
+			if(selection.equals("0") == true)
 			{
+				userInput.close();
+				return null;
+				
+			}
 			
-				System.out.println();
-				System.out.println("0. Back");
-				System.out.println();
-				
-				System.out.println("=============================");
-				System.out.println("Choose an option (0 - " + matchCount + "): ");
-				
-				
-				//user selects option they want
-				selection = userInput.nextLine();
-				
-				if(selection.equals("0") == true)
-				{
-					userInput.close();
-					return null;
-				}
-				else if(ErrorHandling.inputValidator(selection, validMovieSessions.size()) == true)
-				{
-					//selection is a session time, close userInput and return session id
-					userInput.close();
-					return validMovieSessions.get(Integer.parseInt(selection) - 1).getMovieSessionId();
-				}
-			
-			}	
+			userInput.close();
+			return validMovieSessions.get(Integer.parseInt(selection) - 1).getMovieSessionId();
 			
 		}
-		else 
-		{
+		else {
 			System.out.println("There are no session times for " + movieName + " at " + cineplex + " .");
 			System.out.println("Please choose a different movie or cineplex.");
 		}
