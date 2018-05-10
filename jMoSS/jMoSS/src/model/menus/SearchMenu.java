@@ -62,16 +62,36 @@ public class SearchMenu implements MenuInterface {
 	 */
 	public MovieSession searchTheatre(String theatreName)
 	{
-		int matchCount = 0;
-		ArrayList<MovieSession> movieSessions = jMossData.getInstance().getMovieSessions();
-		for(int i = 0; i < movieSessions.size(); i++) {
-			if(movieSessions.get(i).getCineplex().equalsIgnoreCase(theatreName)) {
-				System.out.println(movieSessions.get(i).getAsFormattedString());
-				matchCount++;
+		ArrayList<MovieSession> movieSessions = new ArrayList<MovieSession>();
+		for(MovieSession movies : jMossData.getInstance().getMovieSessions()) {
+			if(movies.getCineplex().equalsIgnoreCase(theatreName)) {
+				System.out.println(movies.getAsFormattedString());
+				movieSessions.add(movies);
 			}
 		}
-		if(matchCount == 0) {
+		if(movieSessions.size() == 0) {
 			System.out.println("No Results Found");
+		}else {
+			for(int i = 0; i < movieSessions.size(); i++) {
+				int index = i + 1;
+				System.out.println((index) + " " + movieSessions.get(i).getAsFormattedString());
+			}
+			//there are movies which can be selected
+			System.out.println();
+			System.out.println("Press any key to make a booking or enter 0 to go back: ");
+			String input = null;
+			try {
+				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+				while((input = reader.readLine()) != null) {
+					if(input.equals("0")) {
+						//user ends function and goes back to search menu
+						break;
+					}else {
+						//user will make a booking
+						makeAbooking(movieSessions);
+					}		
+				}
+			}catch(IOException e) {	}
 		}
 		return null;
 	}
