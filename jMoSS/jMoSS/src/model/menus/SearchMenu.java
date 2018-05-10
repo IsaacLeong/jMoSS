@@ -78,7 +78,6 @@ public class SearchMenu implements MenuInterface {
 
 	public MovieSession searchMovieName(String movieName)
 	{
-		int matchCount = 0;
 		ArrayList<MovieSession> movieSessions = new ArrayList<MovieSession>();
 		for((MovieSession movies :  jMossData.getInstance().getMovieSessions().size()) {
 			if(movies.getMovieName().equalsIgnoreCase(movieName)) {
@@ -89,6 +88,10 @@ public class SearchMenu implements MenuInterface {
 			System.out.println("No Results Found");
 		}
 		else{
+			for(int i = 0; i < movieSessions.size(); i++) {
+				int index = i + 1;
+				System.out.println((index) + " " + movieSessions.get(i).getAsFormattedString());
+			}
 			//there are movies which can be selected
 			System.out.println();
 			System.out.println("Press any key to make a booking or enter 0 to go back: ");
@@ -161,20 +164,32 @@ public class SearchMenu implements MenuInterface {
 	}
 	
 	public void makeAbooking(ArrayList<MovieSession> movieSessions) {
+		System.out.println("Please select a booking from 1 to " + movieSessions.size());
+		System.out.println("Enter 0 to go back to the search menu: ");
+		
+		//user input to select booking
 		//user input to select booking
 		String input = null;
-		
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			input = reader.readLine();
-			int value = Integer.valueOf(input);
-			System.out.println(value);
+			while((input = reader.readLine()) != null) {
+				if(input.equals("0")) {
+					//break loop and head back to search menu
+					break;
+				}
+				else {
+					int value = Integer.valueOf(input);
+					//create booking based on user input
+					if(value >= 1 && value <= movieSessions.size()) {
+						value--;
+						MovieSession dummy = movieSessions.get(value);
+						String custEmail = null;
+						String custsub = null;
+						String bookingNum = null;
+						Booking booking = new Booking(custEmail, custsub, dummy, 2, bookingNum);
+					}
+				}
+			}
 		} catch (IOException e) {}
-		
-		//Dummy data
-		MovieSession dummy = jMossData.getInstance().getMovieSession("3000");
-		String custEmail = null;
-		String custsub = null;
-		Booking booking = new Booking(custEmail, custsub, dummy, 2, "0017");
 	}
 }
