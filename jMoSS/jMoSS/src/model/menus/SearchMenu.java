@@ -79,17 +79,35 @@ public class SearchMenu implements MenuInterface {
 	public MovieSession searchMovieName(String movieName)
 	{
 		int matchCount = 0;
-		ArrayList<MovieSession> movieSessions = jMossData.getInstance().getMovieSessions();
-		for(int i = 0; i < movieSessions.size(); i++) {
-			if(movieSessions.get(i).getMovieName().equals(movieName)) {
-				System.out.println(movieSessions.get(i).getAsFormattedString());
-				matchCount++;
+		ArrayList<MovieSession> movieSessions = new ArrayList<MovieSession>();
+		for(int i = 0; i < jMossData.getInstance().getMovieSessions().size(); i++) {
+			if(jMossData.getInstance().getMovieSessions().get(i).getMovieName().equalsIgnoreCase(movieName)) {
+				System.out.println(jMossData.getInstance().getMovieSessions().get(i).getAsFormattedString());
+				movieSessions.add(jMossData.getInstance().getMovieSessions().get(i));
 			}
 		}
-		if(matchCount == 0) {
+		if(movieSessions.size() == 0) {
 			System.out.println("No Results Found");
 		}
-		return null;
+		else{
+			//there are movies which can be selected
+			System.out.println();
+			System.out.println("Press any key to make a booking or enter 0 to go back: ");
+			String input = null;
+			try {
+				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+				while((input = reader.readLine()) != null) {
+					if(input.equals("0")) {
+						//user ends function and goes back to search menu
+						break;
+					}else {
+						//user will make a booking
+						makeAbooking(movieSessions);
+					}		
+				}
+			}catch(IOException e) {	}
+			
+		}
 		return null;
 	}
 	
@@ -142,5 +160,22 @@ public class SearchMenu implements MenuInterface {
 		} catch (IOException e) {}
 		System.out.println();
 	}
-
+	
+	public void makeAbooking(ArrayList<MovieSession> movieSessions) {
+		//user input to select booking
+		String input = null;
+		
+		try {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			input = reader.readLine();
+			int value = Integer.valueOf(input);
+			System.out.println(value);
+		} catch (IOException e) {}
+		
+		//Dummy data
+		MovieSession dummy = jMossData.getInstance().getMovieSession("3000");
+		String custEmail = null;
+		String custsub = null;
+		Booking booking = new Booking(custEmail, custsub, dummy, 2, "0017");
+	}
 }
