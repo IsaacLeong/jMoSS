@@ -80,10 +80,9 @@ public class SearchMenu implements MenuInterface {
 	{
 		int matchCount = 0;
 		ArrayList<MovieSession> movieSessions = new ArrayList<MovieSession>();
-		for(int i = 0; i < jMossData.getInstance().getMovieSessions().size(); i++) {
-			if(jMossData.getInstance().getMovieSessions().get(i).getMovieName().equalsIgnoreCase(movieName)) {
-				System.out.println(jMossData.getInstance().getMovieSessions().get(i).getAsFormattedString());
-				movieSessions.add(jMossData.getInstance().getMovieSessions().get(i));
+		for((MovieSession movies :  jMossData.getInstance().getMovieSessions().size()) {
+			if(movies.getMovieName().equalsIgnoreCase(movieName)) {
+				movieSessions.add(movies);
 			}
 		}
 		if(movieSessions.size() == 0) {
