@@ -3,6 +3,7 @@ import java.io.*;
 import java.util.*;
 import model.jMossData;
 import interfaces.MenuInterface;
+import model.records.Booking;
 import model.records.MovieSession;
 
 public class SearchMenu implements MenuInterface {
@@ -99,7 +100,7 @@ public class SearchMenu implements MenuInterface {
 	public MovieSession searchMovieName(String movieName)
 	{
 		ArrayList<MovieSession> movieSessions = new ArrayList<MovieSession>();
-		for((MovieSession movies :  jMossData.getInstance().getMovieSessions().size()) {
+		for(MovieSession movies :  jMossData.getInstance().getMovieSessions()) {
 			if(movies.getMovieName().equalsIgnoreCase(movieName)) {
 				movieSessions.add(movies);
 			}

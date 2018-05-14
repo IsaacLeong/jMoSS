@@ -2,6 +2,7 @@ package client;
 
 import model.jMossData;
 import model.menus.BookingMenu;
+import model.menus.EmailSearchMenu;
 import model.menus.LogInMenu;
 import model.menus.MainMenu;
 import model.menus.SearchMenu;
@@ -14,7 +15,25 @@ public class testClient {
 		
 		BookingMenu bookingMenu = new BookingMenu();
 		MainMenu main = new MainMenu();
+		EmailSearchMenu email = new EmailSearchMenu();
+		SearchMenu search = new SearchMenu();
 		
+		
+		
+		/**SPRINT 2 TESTING **/
+		//email.handleMenu();
+		
+		//bookingMenu.handleMenu();
+		
+		//searching for a cineplex doesn't work because it's using the wrong function
+		//search.displayMenu();
+		//search.handleMenu();
+		
+		//logging out works, but if No is chosen then the menu will not print again
+		main.handleMenu();
+		
+		
+		/** SPRINT 1 TESTING **/
 		//testing if get sessios times and options work
 		//bookingMenu.displaySessionTime();
 		//System.out.println(bookingMenu.getSessionTimes("Jurrasic World: Fallen Kingdom", "ST KILDA"));

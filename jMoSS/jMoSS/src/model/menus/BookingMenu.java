@@ -264,16 +264,7 @@ public class BookingMenu implements MenuInterface {
 		return movieList;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	// BELOW IS OLD PBI 3.1 and 3.2!!
-	
-	
+
 	// This function should pass in what is returned from a handleMovieName
 	// function
 	// and pass in what is returned from a handleCineplex function
