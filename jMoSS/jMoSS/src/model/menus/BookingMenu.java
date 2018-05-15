@@ -394,6 +394,24 @@ public class BookingMenu implements MenuInterface {
 	// A function to handle the adding of bookings, remember to call the
 	// jMossData method of addBooking(); to store it in the records.
 	public boolean newBooking(String customerEmail, String suburb, MovieSession movieSession, int bookedSeats) {
+		Scanner userInput = new Scanner(System.in);
+		String selection;
+		
+		System.out.println("Please confirm your booking.");
+		System.out.println("customerEmail");
+		System.out.println("Suburb");
+		System.out.println(MovieSession);
+		System.out.println(bookedSeats);
+		System.out.println("Would you like to confirm your booking?");
+		selection = userInput.nextLine();
+		
+		
+		if (selection.equals("Yes")== true){
+			
+		}
+		
+		
+		
 		return false;
 	}
 
