@@ -62,74 +62,34 @@ public class SearchMenu implements MenuInterface {
 	 */
 	public MovieSession searchTheatre(String theatreName)
 	{
-		ArrayList<MovieSession> movieSessions = new ArrayList<MovieSession>();
-		for(MovieSession movies : jMossData.getInstance().getMovieSessions()) {
-			if(movies.getCineplex().equalsIgnoreCase(theatreName)) {
-				System.out.println(movies.getAsFormattedString());
-				movieSessions.add(movies);
+		int matchCount = 0;
+		ArrayList<MovieSession> movieSessions = jMossClient.data.getMovieSessions();
+		for(int i = 0; i < movieSessions.size(); i++) {
+			if(movieSessions.get(i).getCineplex().equalsIgnoreCase(theatreName)) {
+				System.out.println(movieSessions.get(i).getAsFormattedString());
+				matchCount++;
 			}
 		}
-		if(movieSessions.size() == 0) {
+		if(matchCount == 0) {
 			System.out.println("No Results Found");
-		}else {
-			for(int i = 0; i < movieSessions.size(); i++) {
-				int index = i + 1;
-				System.out.println((index) + " " + movieSessions.get(i).getAsFormattedString());
-			}
-			//there are movies which can be selected
-			System.out.println();
-			System.out.println("Press any key to make a booking or enter 0 to go back: ");
-			String input = null;
-			try {
-				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-				while((input = reader.readLine()) != null) {
-					if(input.equals("0")) {
-						//user ends function and goes back to search menu
-						break;
-					}else {
-						//user will make a booking
-						makeAbooking(movieSessions);
-					}		
-				}
-			}catch(IOException e) {	}
 		}
 		return null;
 	}
 
 	public MovieSession searchMovieName(String movieName)
 	{
-		ArrayList<MovieSession> movieSessions = new ArrayList<MovieSession>();
-		for((MovieSession movies :  jMossData.getInstance().getMovieSessions().size()) {
-			if(movies.getMovieName().equalsIgnoreCase(movieName)) {
-				movieSessions.add(movies);
+		int matchCount = 0;
+		ArrayList<MovieSession> movieSessions = jMossClient.data.getMovieSessions();
+		for(int i = 0; i < movieSessions.size(); i++) {
+			if(movieSessions.get(i).getMovieName().equals(movieName)) {
+				System.out.println(movieSessions.get(i).getAsFormattedString());
+				matchCount++;
 			}
 		}
-		if(movieSessions.size() == 0) {
+		if(matchCount == 0) {
 			System.out.println("No Results Found");
 		}
-		else{
-			for(int i = 0; i < movieSessions.size(); i++) {
-				int index = i + 1;
-				System.out.println((index) + " " + movieSessions.get(i).getAsFormattedString());
-			}
-			//there are movies which can be selected
-			System.out.println();
-			System.out.println("Press any key to make a booking or enter 0 to go back: ");
-			String input = null;
-			try {
-				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-				while((input = reader.readLine()) != null) {
-					if(input.equals("0")) {
-						//user ends function and goes back to search menu
-						break;
-					}else {
-						//user will make a booking
-						makeAbooking(movieSessions);
-					}		
-				}
-			}catch(IOException e) {	}
-			
-		}
+		return null;
 		return null;
 	}
 	
@@ -182,34 +142,5 @@ public class SearchMenu implements MenuInterface {
 		} catch (IOException e) {}
 		System.out.println();
 	}
-	
-	public void makeAbooking(ArrayList<MovieSession> movieSessions) {
-		System.out.println("Please select a booking from 1 to " + movieSessions.size());
-		System.out.println("Enter 0 to go back to the search menu: ");
-		
-		//user input to select booking
-		//user input to select booking
-		String input = null;
-		try {
-			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			while((input = reader.readLine()) != null) {
-				if(input.equals("0")) {
-					//break loop and head back to search menu
-					break;
-				}
-				else {
-					int value = Integer.valueOf(input);
-					//create booking based on user input
-					if(value >= 1 && value <= movieSessions.size()) {
-						value--;
-						MovieSession dummy = movieSessions.get(value);
-						String custEmail = null;
-						String custsub = null;
-						String bookingNum = null;
-						Booking booking = new Booking(custEmail, custsub, dummy, 2, bookingNum);
-					}
-				}
-			}
-		} catch (IOException e) {}
-	}
+
 }

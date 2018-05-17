@@ -3,7 +3,6 @@ package client;
 import model.jMossData;
 import model.menus.BookingMenu;
 import model.menus.LogInMenu;
-import model.menus.MainMenu;
 import model.menus.SearchMenu;
 
 public class testClient {
@@ -13,17 +12,13 @@ public class testClient {
 		jMossData.getInstance().load();
 		
 		BookingMenu bookingMenu = new BookingMenu();
-		MainMenu main = new MainMenu();
 		
-		//testing if get sessios times and options work
 		//bookingMenu.displaySessionTime();
-		//System.out.println(bookingMenu.getSessionTimes("Jurrasic World: Fallen Kingdom", "ST KILDA"));
-		
 		
 		//bookingMenu.displayNumberOfPpl();
 		
-		//testing if logout works
-		//main.handleMenu();
+		//bookingMenu.getSessionTimes("Jurrasic World: Fallen Kingdom", "ST KILDA");
+		
 		
 		/* Handles invalid user and password combinations */
 		/*LogInMenu logInMenu = new LogInMenu();
