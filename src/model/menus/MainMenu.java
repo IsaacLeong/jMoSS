@@ -69,8 +69,9 @@ public class MainMenu implements MenuInterface {
 		
 		
 		do {
-		selection = MenuHandling.menuSelection(userInput, NUMBER_OF_MENU_ELEMENTS);
 		displayMenu();
+		selection = MenuHandling.menuSelection(userInput, NUMBER_OF_MENU_ELEMENTS);
+
 		switch(selection) {
 		//Make a booking
 		case 1:

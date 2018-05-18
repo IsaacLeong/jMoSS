@@ -311,7 +311,6 @@ public class BookingMenu implements MenuInterface {
 		System.out.println("Enter Email Address");
 		System.out.println("=============================");
 		System.out.println();
-		System.out.println("Please enter an email address (enter 0 to go back): ");
 		//main declarations (Loop exit check, user input buffer
 		boolean exitCheck = false;
 		String emailInput = null;
@@ -319,6 +318,7 @@ public class BookingMenu implements MenuInterface {
 		//validation loop
 		do {
 			//user inputs email address
+			System.out.println("Please enter an email address (enter 0 to go back): ");
 			emailInput = userInput.nextLine();
 			
 			//user exit
@@ -358,30 +358,30 @@ public class BookingMenu implements MenuInterface {
 		System.out.println("Enter Suburb");
 		System.out.println("=============================");
 		System.out.println();
-		System.out.println("Please enter your home suburb (enter 0 to go back): ");
 		
 		//initial declarations (Exit check and user input buffer)
 		boolean exitCheck = false;
-		String subrubInput = null;
+		String suburbInput = null;
 		
 		do {
 			//Take user input
-			subrubInput = userInput.nextLine();
+			System.out.println("Please enter your home suburb (enter 0 to go back): ");
+			suburbInput = userInput.nextLine();
 			
 			//user exit
-			if(subrubInput.equals("0")) {
+			if(suburbInput.equals("0")) {
 				return;
 			}
 			
 			//validation loop
 			do {
 				//check user validation
-				System.out.println("Is this correct?(Y/N): " + subrubInput);
+				System.out.println("Is this correct?(Y/N): " + suburbInput);
 				String selection = userInput.nextLine();
 				
 				//If Y or yes confirm
 				if(selection.equalsIgnoreCase("Y") || selection.equalsIgnoreCase("YES")) {
-					setSuburb(subrubInput);
+					setSuburb(suburbInput);
 					exitCheck = true;
 				}
 				//If N or no exit

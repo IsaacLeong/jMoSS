@@ -57,8 +57,6 @@ public class LogInMenu implements MenuInterface {
 		do {
 			//Print menu
 			displayMenu();
-			//opens scanner, and goes through user I/O
-			Scanner userInput = new Scanner(System.in);
 			
 			System.out.println("Please enter your username (Or enter 0 to exit): ");
 			

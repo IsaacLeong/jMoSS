@@ -205,7 +205,7 @@ public class SearchMenu implements MenuInterface {
 			}
 		}
 		//if movie doesn't exist in array add to array for processing
-		if(movieExists == false && movieSession.getMovieName().toLowerCase().contains(partialToCompare) == true) {
+		if(movieExists == false && movieSession.getMovieName().toLowerCase().contains(partialToCompare.toLowerCase()) == true) {
 			movieNames.add(movieSession.getMovieName());
 		}
 
@@ -293,7 +293,7 @@ public class SearchMenu implements MenuInterface {
 						}
 				}
 				//if movie doesn't exist in array add to array for processing
-				if(movieExists == false && movieSession.getCineplex().toLowerCase().contains(partialToCompare) == true) {
+				if(movieExists == false && movieSession.getCineplex().toLowerCase().contains(partialToCompare.toLowerCase()) == true) {
 					cineplexNames.add(movieSession.getCineplex());
 				}
 
